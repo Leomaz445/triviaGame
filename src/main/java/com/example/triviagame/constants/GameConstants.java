@@ -29,7 +29,8 @@ public class GameConstants {
     public static final String DO_YOU_WANT_TO_PLAY_AGAIN = "Do you want to play again?";
     public static final String THANK_YOU_FOR_PLAYING = "Thank You For Playing";
     public static final String YOUR_FINAL_SCORE_IS = "Your Final Score is: ";
-    public static final String YOU_ARE_ABOUT_TO_START_FROM_THE_BEGINNING = "No more Questions!";
+    public static final String NO_MORE_QUESTION = "No more Questions!";
+    public static final String YOU_ARE_ABOUT_TO_START_FROM_THE_BEGINNING = "You are about to start the game again";
     public static final String YOUR_CURRENT_SCORE_IS = "Your current score is: ";
     public static final String MISSING_ANSWER_ONE = "missing answer one";
     public static final String MISSING_ANSWER_TWO = "missing answer two";

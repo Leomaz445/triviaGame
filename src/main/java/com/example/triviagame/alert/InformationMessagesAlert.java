@@ -5,20 +5,20 @@ import com.example.triviagame.Messages;
 import com.example.triviagame.enums.InformationCode;
 import javafx.scene.control.Alert;
 
-import java.util.Map;
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 
 public class InformationMessagesAlert {
 
     private final static Alert alertInformation = new Alert(Alert.AlertType.INFORMATION);
-    private final Map<InformationCode, Consumer<Messages>> mapOfInformation = Map.of(
-            InformationCode.YOU_WON_THE_GAME, this::createAlert,
-            InformationCode.RIGHT_ANSWER, this::createAlert,
-            InformationCode.WRONG_ANSWER, this::createAlert,
-            InformationCode.FINAL_SCORE,this::createAlert,
-            InformationCode.START_NEW_GAME,this::createAlert
-    );
+    private final HashMap<InformationCode, Consumer<Messages>> mapOfInformation = new HashMap<InformationCode, Consumer<Messages>>() {{
+        put(InformationCode.YOU_WON_THE_GAME, msg -> createAlert(msg));
+        put(InformationCode.RIGHT_ANSWER, msg -> createAlert(msg));
+        put(InformationCode.WRONG_ANSWER, msg -> createAlert(msg));
+        put(InformationCode.FINAL_SCORE, msg -> createAlert(msg));
+        put(InformationCode.START_NEW_GAME, msg -> createAlert(msg));
+    }};
 
     public void getAlert(InformationCode alertCode, Messages messages) {
         mapOfInformation.get(alertCode).accept(messages);
