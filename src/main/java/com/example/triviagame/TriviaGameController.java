@@ -105,35 +105,21 @@ public class TriviaGameController {
 
     private void checkIfRightOrWrong(RadioButton selectedButton) {
         if (selectedButton.getText().equals(triviaEngine.getRightAnswer())) {
-            setRightOrWrongConsequences(selectedButton,
+            triviaEngine.setRightOrWrongConsequences(informationMessagesAlert, selectedButton,
                     FX_BACKGROUND_COLOR_FOREST_GREEN,
                     InformationCode.RIGHT_ANSWER,
                     RIGHT_ANSWER,
                     ADD_10_POINTS_TO_THE_SCORE);
         } else {
-            setRightOrWrongConsequences(selectedButton,
+            triviaEngine.setRightOrWrongConsequences(informationMessagesAlert, selectedButton,
                     FX_BACKGROUND_COLOR_FIRE_BRICK,
                     InformationCode.WRONG_ANSWER,
                     WRONG_ANSWER,
                     DECREASE_5_POINTS_FROM_THE_SCORE);
         }
-        updateResultScreen(selectedButton);
-        setQuestion();
-    }
-
-    private void updateResultScreen(RadioButton selectedButton) {
+        triviaEngine.updateResultScreen(selectedButton);
         scoreText.setText(String.valueOf(triviaEngine.getUserScore()));
-        selectedButton.setSelected(false);
-        selectedButton.setStyle(FX_BACKGROUND_NO_COLOR);
-    }
-
-    private void setRightOrWrongConsequences(RadioButton selectedButton, String backGroundColor,
-                                             InformationCode informationCode,
-                                             Messages messages,
-                                             int changePoints) {
-        selectedButton.setStyle(backGroundColor);
-        informationMessagesAlert.getAlert(informationCode, messages);
-        triviaEngine.setUserScore(changePoints);
+        setQuestion();
 
     }
 
@@ -142,7 +128,11 @@ public class TriviaGameController {
         if (randomQuestion.isPresent()) {
             ArrayList<String> shuffledAnswers = triviaEngine.shuffle(randomQuestion.get());
             System.out.println(triviaEngine.getRightAnswer());
-            setTheTextsInRadioButton(randomQuestion.get(), shuffledAnswers);
+            triviaEngine.setTheTextsInRadioButton(questionText,
+                    ansOneRadioButton,
+                    ansTwoRadioButton,
+                    ansThreeRadioButton,
+                    ansFourRadioButton, randomQuestion.get(), shuffledAnswers);
         } else {
             noMoreQuestionsFinishedGame();
         }
@@ -157,14 +147,6 @@ public class TriviaGameController {
             exit();
         }
         init();
-    }
-
-    private void setTheTextsInRadioButton(QuestionTemplate randomQuestion, ArrayList<String> shuffledAnswers) {
-        questionText.setText(randomQuestion.getQuestion());
-        ansOneRadioButton.setText(shuffledAnswers.get(0));
-        ansTwoRadioButton.setText(shuffledAnswers.get(1));
-        ansThreeRadioButton.setText(shuffledAnswers.get(2));
-        ansFourRadioButton.setText(shuffledAnswers.get(3));
     }
 
     void followUserSelectedQuestionLister() {

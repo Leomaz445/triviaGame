@@ -1,7 +1,14 @@
 package com.example.triviagame;
 
+import com.example.triviagame.alert.InformationMessagesAlert;
+import com.example.triviagame.enums.InformationCode;
+import javafx.scene.control.RadioButton;
+import javafx.scene.text.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static com.example.triviagame.constants.GameConstants.*;
 
 public class TriviaEngine {
     private int userScore;
@@ -35,4 +42,51 @@ public class TriviaEngine {
         Collections.shuffle(shuffledAnswers);
         return shuffledAnswers;
     }
+
+    public void setRightOrWrongConsequences(InformationMessagesAlert informationMessagesAlert,
+                                            RadioButton selectedButton, String backGroundColor,
+                                            InformationCode informationCode,
+                                            Messages messages,
+                                            int changePoints) {
+        selectedButton.setStyle(backGroundColor);
+        informationMessagesAlert.getAlert(informationCode, messages);
+        setUserScore(changePoints);
+
+    }
+
+    public void setTheTextsInRadioButton(Text questionText,
+                                          RadioButton ansOneRadioButton,
+                                          RadioButton ansTwoRadioButton,
+                                          RadioButton ansThreeRadioButton,
+                                          RadioButton ansFourRadioButton,
+                                          QuestionTemplate randomQuestion,
+                                          ArrayList<String> shuffledAnswers) {
+        questionText.setText(randomQuestion.getQuestion());
+        ansOneRadioButton.setText(shuffledAnswers.get(0));
+        ansTwoRadioButton.setText(shuffledAnswers.get(1));
+        ansThreeRadioButton.setText(shuffledAnswers.get(2));
+        ansFourRadioButton.setText(shuffledAnswers.get(3));
+    }
+
+    public void updateResultScreen(RadioButton selectedButton) {
+        selectedButton.setSelected(false);
+        selectedButton.setStyle(FX_BACKGROUND_NO_COLOR);
+    }
+
+    private void checkIfRightOrWrong(InformationMessagesAlert informationMessagesAlert,RadioButton selectedButton) {
+        if (selectedButton.getText().equals(rightAnswer)) {
+            setRightOrWrongConsequences(informationMessagesAlert, selectedButton,
+                    FX_BACKGROUND_COLOR_FOREST_GREEN,
+                    InformationCode.RIGHT_ANSWER,
+                    RIGHT_ANSWER,
+                    ADD_10_POINTS_TO_THE_SCORE);
+        } else {
+            setRightOrWrongConsequences(informationMessagesAlert, selectedButton,
+                    FX_BACKGROUND_COLOR_FIRE_BRICK,
+                    InformationCode.WRONG_ANSWER,
+                    WRONG_ANSWER,
+                    DECREASE_5_POINTS_FROM_THE_SCORE);
+        }
+    }
+
 }
