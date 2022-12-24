@@ -65,12 +65,12 @@
                         <Label alignment="CENTER" contentDisplay="TOP" prefHeight="29.0" prefWidth="132.0" text="Menu" textAlignment="CENTER" />
                      </children>
                   </VBox>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickStartNewGame" text="Start New Game" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickStartNewGame" text="Start New Game">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickExitGame" prefHeight="25.0" prefWidth="101.0" text="Exit Game" textAlignment="CENTER">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickExitGame" prefHeight="25.0" prefWidth="101.0" text="Exit Game" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
