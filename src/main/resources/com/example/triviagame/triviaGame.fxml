@@ -70,7 +70,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickExitGame" prefHeight="25.0" prefWidth="101.0" text="Exit Game">
+                  <Button mnemonicParsing="false" onAction="#onClickExitGame" prefHeight="25.0" prefWidth="101.0" text="Exit Game" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>

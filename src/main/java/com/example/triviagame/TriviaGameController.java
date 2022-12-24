@@ -1,7 +1,6 @@
 package com.example.triviagame;
 
 
-import com.example.triviagame.enums.InformationCode;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import static com.example.triviagame.constants.GameConstants.*;
 import static javafx.application.Platform.exit;
@@ -46,6 +44,7 @@ public class TriviaGameController {
 
     public void initialize() {
         questionBank = new QuestionBank();
+        questionBank.setGameQuestions();
         triviaEngine = new TriviaEngine();
         init();
     }
@@ -66,7 +65,7 @@ public class TriviaGameController {
         triviaEngine.setUserScore(0);
         scoreText.setText(String.valueOf(triviaEngine.getUserScore()));
         questionBank.initAllQuestions();
-        followUserSelectedQuestionLister();
+        followUserSelectedQuestionListener();
         setQuestion();
     }
 
@@ -79,19 +78,20 @@ public class TriviaGameController {
             setQuestion();
         } catch (ClassCastException e) {
             System.out.println(THERE_WAS_PROBLEM_TO_CAST);
+        } catch (NullPointerException e) {
+            System.out.println(NO_RADIO_BUTTON_WAS_CHOSEN);
         }
     }
 
     public void setQuestion() {
-        Optional<QuestionTemplate> randomQuestion = questionBank.getRandomQuestion();
-        if (randomQuestion.isPresent()) {
-            ArrayList<String> shuffledAnswers = triviaEngine.shuffle(randomQuestion.get());
-            System.out.println(triviaEngine.getRightAnswer());
+        if (questionBank.haveQuestionsToAsk()) {
+            QuestionTemplate randomQuestion = questionBank.getRandomQuestion();
+            ArrayList<String> shuffledAnswers = triviaEngine.shuffle(randomQuestion);
             triviaEngine.setTheTextsInRadioButton(questionText,
                     ansOneRadioButton,
                     ansTwoRadioButton,
                     ansThreeRadioButton,
-                    ansFourRadioButton, randomQuestion.get(), shuffledAnswers);
+                    ansFourRadioButton, randomQuestion, shuffledAnswers);
         } else {
             noMoreQuestionsFinishedGame();
         }
@@ -104,7 +104,7 @@ public class TriviaGameController {
             exit();
     }
 
-    void followUserSelectedQuestionLister() {
+    void followUserSelectedQuestionListener() {
         answers.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {

@@ -32,13 +32,11 @@ public class GameConstants {
     public static final String NO_MORE_QUESTION = "No more Questions!";
     public static final String YOU_ARE_ABOUT_TO_START_FROM_THE_BEGINNING = "You are about to start the game again";
     public static final String YOUR_CURRENT_SCORE_IS = "Your current score is: ";
-    public static final String MISSING_ANSWER_ONE = "missing answer one";
-    public static final String MISSING_ANSWER_TWO = "missing answer two";
-    public static final String MISSING_ANSWER_THREE = "missing answer three";
-    public static final String MISSING_ANSWER_FOUR = "missing answer four";
     public static final String FILE_NOT_FOUND = "FILE NOT FOUND";
     public static final String ERROR_READING_FROM_THE_FILE = "error reading from the file";
     public static final String THERE_WAS_PROBLEM_TO_CAST = "cant cast";
+    public static final String NO_RADIO_BUTTON_WAS_CHOSEN = "No Radio Button Was chosen";
+    public static final String ERROR_GETTING_QUESTION = "Error getting question";
     public static final Messages RIGHT_ANSWER = new Messages.MessagesBuilder()
             .setTitle(TRIVIA_GAME)
             .setHeader(CORRECT)
@@ -63,7 +61,6 @@ public class GameConstants {
             .setTitle(TRIVIA_GAME)
             .setHeader(CONGRATULATIONS_YOU_FINISHED_THE_GAME)
             .setContent(DO_YOU_WANT_TO_PLAY_AGAIN).build();
-
 
 }
 
