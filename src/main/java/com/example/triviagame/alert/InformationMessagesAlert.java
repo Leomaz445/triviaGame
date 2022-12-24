@@ -18,6 +18,7 @@ public class InformationMessagesAlert {
         put(InformationCode.WRONG_ANSWER, msg -> createAlert(msg));
         put(InformationCode.FINAL_SCORE, msg -> createAlert(msg));
         put(InformationCode.START_NEW_GAME, msg -> createAlert(msg));
+        put(InformationCode.CHOOSE_ANSWER, msg -> createAlert(msg));
     }};
 
     public void getAlert(InformationCode alertCode, Messages messages) {

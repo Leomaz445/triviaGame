@@ -37,6 +37,7 @@ public class GameConstants {
     public static final String THERE_WAS_PROBLEM_TO_CAST = "cant cast";
     public static final String NO_RADIO_BUTTON_WAS_CHOSEN = "No Radio Button Was chosen";
     public static final String ERROR_GETTING_QUESTION = "Error getting question";
+    public static final String PLEASE_SELECT_ANSWER = "Please select answer";
     public static final Messages RIGHT_ANSWER = new Messages.MessagesBuilder()
             .setTitle(TRIVIA_GAME)
             .setHeader(CORRECT)
@@ -61,6 +62,11 @@ public class GameConstants {
             .setTitle(TRIVIA_GAME)
             .setHeader(CONGRATULATIONS_YOU_FINISHED_THE_GAME)
             .setContent(DO_YOU_WANT_TO_PLAY_AGAIN).build();
+
+    public static final Messages SELECT_ANSWER = new Messages.MessagesBuilder()
+            .setTitle(TRIVIA_GAME)
+            .setHeader(PLEASE_SELECT_ANSWER)
+            .setContent(NO_RADIO_BUTTON_WAS_CHOSEN).build();
 
 }
 

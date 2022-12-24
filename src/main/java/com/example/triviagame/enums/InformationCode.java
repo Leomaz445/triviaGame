@@ -5,7 +5,8 @@ public enum InformationCode {
     RIGHT_ANSWER(2),
     WRONG_ANSWER(3),
     FINAL_SCORE(4),
-    START_NEW_GAME(5);
+    START_NEW_GAME(5),
+    CHOOSE_ANSWER(6);
 
     private final int value;
 

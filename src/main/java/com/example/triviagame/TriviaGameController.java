@@ -1,6 +1,8 @@
 package com.example.triviagame;
 
 
+import com.example.triviagame.alert.InformationMessagesAlert;
+import com.example.triviagame.enums.InformationCode;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -79,7 +81,7 @@ public class TriviaGameController {
         } catch (ClassCastException e) {
             System.out.println(THERE_WAS_PROBLEM_TO_CAST);
         } catch (NullPointerException e) {
-            System.out.println(NO_RADIO_BUTTON_WAS_CHOSEN);
+            userDidntSelectRadioButton();
         }
     }
 
@@ -123,5 +125,10 @@ public class TriviaGameController {
                 }
             }
         });
+    }
+
+    private void userDidntSelectRadioButton() {
+        InformationMessagesAlert informationMessagesAlert = new InformationMessagesAlert();
+        informationMessagesAlert.getAlert(InformationCode.CHOOSE_ANSWER, SELECT_ANSWER);
     }
 }
